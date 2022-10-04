@@ -7,5 +7,17 @@ pipeline {
       }
     }
 
+    stage('Fluffy Test') {
+      steps {
+        echo 'pruebaa'
+      }
+    }
+
+    stage('Fluffy Deploy Stage') {
+      steps {
+        echo 'otra'
+      }
+    }
+
   }
 }
