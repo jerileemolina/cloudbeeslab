@@ -6,13 +6,14 @@ pipeline {
         sleep 5
         sh '''echo Success!
 '''
+        echo 'echo Edited Placeholder'
       }
     }
 
     stage('Fluffy Test') {
       steps {
         echo 'Placeholder'
-        echo 'Another Placeholder'
+        echo 'Another Edited Placeholder'
       }
     }
 
