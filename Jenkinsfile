@@ -4,8 +4,7 @@ pipeline {
     stage('Buzz Build') {
       steps {
         sleep 5
-        sh '''echo Success!
-'''
+        sh 'echo "I am a ${BUZZ_NAME}"'
         archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
       }
     }
@@ -25,5 +24,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    BUZZ_NAME = 'Worker Bee'
   }
 }
