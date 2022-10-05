@@ -17,7 +17,7 @@ pipeline {
         echo 'Placeholder'
         echo 'Another Edited Placeholder'
         sh './jenkins/test-all.sh'
-        junit '**/surefire-reports/**/*.xml'
+        junit 'target/**/TEST*.xml'
       }
     }
 
