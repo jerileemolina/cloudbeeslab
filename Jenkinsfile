@@ -6,8 +6,6 @@ pipeline {
         sleep 5
         sh '''echo Success!
 '''
-        sh '''./jenkins/build.sh
-'''
         archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
       }
     }
