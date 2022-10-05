@@ -6,6 +6,7 @@ pipeline {
         sleep 5
         sh 'echo "I am a ${BUZZ_NAME}"'
         archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
+        sh './jenkins/build.sh'
       }
     }
 
