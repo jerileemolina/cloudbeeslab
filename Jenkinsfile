@@ -11,11 +11,24 @@ pipeline {
     }
 
     stage('Buzz Test') {
-      steps {
-        echo 'Placeholder'
-        echo 'Another Edited Placeholder'
-        sh './jenkins/test-all.sh'
-        junit '**/surefire-reports/**/*.xml'
+      parallel {
+        stage('Buzz Test') {
+          steps {
+            echo 'Placeholder'
+            echo 'Another Edited Placeholder'
+            sh './jenkins/test-all.sh'
+            junit '**/surefire-reports/**/*.xml'
+          }
+        }
+
+        stage('Prueba B') {
+          steps {
+            echo 'Prueba paralela'
+            sh '''sleep 10
+echo done'''
+          }
+        }
+
       }
     }
 
