@@ -12,7 +12,7 @@ pipeline {
         stage('Backend') {
           steps {
             sh './jenkins/test-backend.sh'
-            junit 'target/surefire-reports/**/TEST*.xm'
+            junit 'target/surefire-reports/**/TEST*.xml'
           }
         }
 
