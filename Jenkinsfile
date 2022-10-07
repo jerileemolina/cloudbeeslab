@@ -3,23 +3,44 @@ pipeline {
   stages {
     stage('Fluffy Build') {
       steps {
-        sleep 5
-        sh '''echo Success!
-'''
-        echo 'echo Edited Placeholder'
+        sh './jenkins/build.sh'
       }
     }
 
     stage('Fluffy Test') {
-      steps {
-        echo 'Placeholder'
-        echo 'Another Edited Placeholder'
+      parallel {
+        stage('Backend') {
+          steps {
+            sh './jenkins/test-backend.sh'
+            junit 'target/surefire-reports/**/TEST*.xm'
+          }
+        }
+
+        stage('Frontend') {
+          steps {
+            sh './jenkins/test-frontend.sh'
+            junit 'target/test-results/**/TEST*.xml'
+          }
+        }
+
+        stage('Performance') {
+          steps {
+            sh './jenkins/test-performance.sh'
+          }
+        }
+
+        stage('Static') {
+          steps {
+            sh './jenkins/test-static.sh'
+          }
+        }
+
       }
     }
 
     stage('Fluffy Deploy Stage') {
       steps {
-        echo 'Stage 3'
+        sh './jenkins/deploy.sh staging'
       }
     }
 
